@@ -7,12 +7,13 @@ import io
 import imageio
 import json
 from gtts import gTTS
-from playsound import playsound
+import pygame
 
 url = "http://localhost:8080/completion"
 headers = {"Content-Type": "application/json"}
 
 print("Starting video stream with TTS... Wait for a few seconds for the stream to the output to start generating.")
+pygame.mixer.init()
 cap = imageio.get_reader('<video0>')
 
 while True:
@@ -41,7 +42,10 @@ while True:
                     print(content_json["content"], end='', flush=True)
                     tts = gTTS(content_json["content"], lang='en')
                     tts.save("output.mp3")
-                    playsound("output.mp3")
+                    pygame.mixer.music.load("output.mp3")
+                    pygame.mixer.music.play()
+                    while pygame.mixer.music.get_busy():  # Wait for the audio to finish playing
+                        pygame.time.Clock().tick(10)
                 write_file.flush()
             except json.JSONDecodeError:
                 print("JSONDecodeError: Expecting property name enclosed in double quotes")
