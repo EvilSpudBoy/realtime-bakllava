@@ -32,20 +32,38 @@ cmake --build . --config Release
 ```
 
 ## 📦 Step 2: Download the Model!
+### To use llava
 1. 📥 Download from Hugging Face - [mys/ggml_bakllava-1](https://huggingface.co/mys/ggml_bakllava-1/tree/main) this 2 files:
 * 🌟 ggml-model-q4_k.gguf (or any other quantized model) - only one is required!
 * 🧊 mmproj-model-f16.gguf
+---
+### To use ShareGPT4V-7B
+1. 📥 Download from Hugging Face - [nakodanei/ShareGPT4V-7B_GGUF](https://huggingface.co/mys/ggml_bakllava-1/tree/main) this 2 files:
+* 🌟 ShareGPT4V-7B_Q5_K_M.gguf
+* 🧊 mmproj-model-f16.gguf
+---
 
 2. ✂️ Copy the paths of those 2 files.
 3. 🏃‍♂️ Run this in the llama.cpp repository (replace YOUR_PATH with the paths to the files you downloaded):
 
     #### macOS
+    *llava*
     ```
     ./server -m YOUR_PATH/ggml-model-q4_k.gguf --mmproj YOUR_PATH/mmproj-model-f16.gguf -ngl 1
     ```
-    #### Windows
+    *ShareGPT4V*
     ```
+    ./server -m YOUR_PATH/ShareGPT4V-7B_Q5_K_M.gguf --mmproj YOUR_PATH/mmproj-model-f16.gguf -ngl 1
+    ```
+    #### Windows
+    *llava*
+   ```
     server.exe -m REPLACE_WITH_YOUR_PATH\ggml-model-q4_k.gguf --mmproj REPLACE_WITH_YOUR_PATH\mmproj-model-f16.gguf -ngl 1
+
+    ```
+    *ShareGPT4V*
+    ```
+    server.exe -m REPLACE_WITH_YOUR_PATH\ShareGPT4V-7B_Q5_K_M.gguf --mmproj REPLACE_WITH_YOUR_PATH\mmproj-model-f16.gguf -ngl 1
 
     ```
 4. 🎉 The llama server is now up and running!
