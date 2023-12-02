@@ -38,7 +38,7 @@ cmake --build . --config Release
 * 🧊 mmproj-model-f16.gguf
 ---
 ### To use ShareGPT4V-7B
-1. 📥 Download from Hugging Face - [nakodanei/ShareGPT4V-7B_GGUF](https://huggingface.co/mys/ggml_bakllava-1/tree/main) this 2 files:
+1. 📥 Download from Hugging Face - [nakodanei/ShareGPT4V-7B_GGUF](https://huggingface.co/nakodanei/ShareGPT4V-7B_GGUF/tree/main) this 2 files:
 * 🌟 ShareGPT4V-7B_Q5_K_M.gguf
 * 🧊 mmproj-model-f16.gguf
 ---
