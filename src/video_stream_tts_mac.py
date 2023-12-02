@@ -1,13 +1,10 @@
-import os
-# Change paht to ffmpeg if needed
+#import os
+# Change path to ffmpeg if needed
 # os.environ["IMAGEIO_FFMPEG_EXE"] = "/path_to/ffmpeg"
 
 
 import requests
-import time
-from PIL import Image
 import base64
-import io
 import imageio
 import json
 import subprocess
@@ -15,7 +12,8 @@ import subprocess
 url = "http://localhost:8080/completion"
 headers = {"Content-Type": "application/json"}
 
-print("Starting video stream with TTS on macOS... Wait for a few seconds for the stream to the output to start generating.")
+print("Starting video stream with TTS on macOS... Wait for a few seconds for the stream to the output to start "
+      "generating.")
 cap = imageio.get_reader('<video0>')
 
 while True:
