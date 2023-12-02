@@ -10,6 +10,7 @@ import base64
 import io
 import imageio
 import json
+import threading
 from gtts import gTTS
 import pygame
 
@@ -19,6 +20,17 @@ headers = {"Content-Type": "application/json"}
 print("Starting video stream with TTS... Wait for a few seconds for the stream to the output to start generating.")
 pygame.mixer.init()
 cap = imageio.get_reader('<video0>')
+def play_tts(text):
+    """Function to handle TTS conversion and playback."""
+    try:
+        tts = gTTS(text, lang='en')
+        tts.save("output.mp3")
+        pygame.mixer.music.load("output.mp3")
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy():  # Wait for the audio to finish playing
+            pygame.time.Clock().tick(10)
+    except Exception as e:
+        print(f"Error playing TTS: {e}")
 
 
 
@@ -49,12 +61,9 @@ while True:
                     content_json = json.loads(content_split[1])
                     write_file.write(content_json["content"])
                     print(content_json["content"], end='', flush=True)
-                    tts = gTTS(content_json["content"], lang='en')
-                    tts.save("output.mp3")
-                    pygame.mixer.music.load("output.mp3")
-                    pygame.mixer.music.play()
-                    while pygame.mixer.music.get_busy():  # Wait for the audio to finish playing
-                        pygame.time.Clock().tick(10)
+                    # Start a new thread to handle TTS playback
+                    tts_thread = threading.Thread(target=play_tts, args=(content_json["content"],))
+                    tts_thread.start()
                 write_file.flush()
             except json.JSONDecodeError:
                 print("JSONDecodeError: Expecting property name enclosed in double quotes")
