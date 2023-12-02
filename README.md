@@ -92,6 +92,18 @@ To start streaming from your webcam:
 python3 src/video_stream.py
 ```
 
+### 🎥 Webcam Script with TTS (gTTS & pygame)
+```
+python3 src/video_stream_tts.py
+```
+
+### 🎥 Webcam Script with TTS (say)
+```
+python3 src/video_stream_tts_mac.py
+```
+
+
+
 ### 🖼 Simple Picture Drop
 ![Export-1699182386675](https://github.com/Fuzzy-Search/realtime-bakllava/assets/40468118/cc2384d9-1e16-4e94-a02c-47bd703d8ed7)
 
