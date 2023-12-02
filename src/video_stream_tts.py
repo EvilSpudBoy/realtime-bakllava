@@ -1,4 +1,8 @@
 import os
+# Change paht to ffmpeg if needed
+# os.environ["IMAGEIO_FFMPEG_EXE"] = "/path_to/ffmpeg"
+
+
 import requests
 import time
 from PIL import Image
@@ -16,9 +20,14 @@ print("Starting video stream with TTS... Wait for a few seconds for the stream t
 pygame.mixer.init()
 cap = imageio.get_reader('<video0>')
 
+
+
 while True:
+    # Capture frame-by-frame
     frame = cap.get_next_data()
+    # Save the image to a file
     imageio.imsave('temp.png', frame)
+    # Open the file in binary mode and convert to base64
     with open('temp.png', 'rb') as file:
         encoded_string = base64.b64encode(file.read()).decode('utf-8')
 
